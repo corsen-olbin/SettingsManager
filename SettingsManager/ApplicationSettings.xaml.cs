@@ -20,6 +20,18 @@ namespace SettingsManager
         public ApplicationSettings()
         {
             InitializeComponent();
+            this.DataContext = AppSettings.LoadOrCreateSettings();
+        }
+
+        private void Apply_Click(object sender, RoutedEventArgs e)
+        {
+            ((AppSettings)this.DataContext).Save();
+            this.Close();
+        }
+
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

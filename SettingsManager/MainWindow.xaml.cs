@@ -56,7 +56,8 @@ namespace SettingsManager
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             ApplicationSettings form = new ApplicationSettings();
-            form.Show();
+            //form.Owner = this;
+            form.ShowDialog();
         }
     }
 }
