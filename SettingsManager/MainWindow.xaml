@@ -18,14 +18,24 @@
                 <MenuItem Command="commands:CustomCommands.Exit" />
             </MenuItem>
         </Menu>
-        <ListView Margin="10" Loaded="ListView_Loaded">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="In Use" Width="50" DisplayMemberBinding="{Binding InUse}" />
-                    <GridViewColumn Header="Description" Width="150" DisplayMemberBinding="{Binding Description}" />
-                    <GridViewColumn Header="File Location" Width="400" DisplayMemberBinding="{Binding FileLocation}" />
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <Grid Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="150" />
+            </Grid.ColumnDefinitions>
+            <ListView Name="lvSettingFiles" Loaded="ListView_Loaded">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="In Use" Width="50" DisplayMemberBinding="{Binding InUse}" />
+                        <GridViewColumn Header="Description" Width="150" DisplayMemberBinding="{Binding Description}" />
+                        <GridViewColumn Header="File Location" Width="400" DisplayMemberBinding="{Binding FileLocation}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <StackPanel Grid.Column="1">
+                <Button Margin="5" Click="AddButton_Click">Add</Button>
+                <Button Margin="5 0" Click="DeleteButton_Click">Delete</Button>
+            </StackPanel>
+        </Grid>
     </DockPanel>
 </Window>

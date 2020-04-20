@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Linq;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -21,9 +23,13 @@ namespace SettingsManager
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        private ObservableCollection<SettingsFile> files = new ObservableCollection<SettingsFile>();
         public MainWindow()
         {
             InitializeComponent();
+
+            lvSettingFiles.ItemsSource = files;
         }
 
         private void ExitCommand_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -58,6 +64,19 @@ namespace SettingsManager
             ApplicationSettings form = new ApplicationSettings();
             //form.Owner = this;
             form.ShowDialog();
+        }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            files.Add(new SettingsFile { InUse = true, Description = "test", FileLocation = "test" });
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (lvSettingFiles.SelectedItem != null)
+            {
+                files.Remove(lvSettingFiles.SelectedItem as SettingsFile);
+            }
         }
     }
 }
